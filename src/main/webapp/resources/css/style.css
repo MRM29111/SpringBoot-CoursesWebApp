@@ -1,0 +1,12 @@
+.footer {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	height: 50px;
+	background-color: #4e5d6c;
+	padding: 15px;
+}
+
+.error {
+	color: red;
+}
