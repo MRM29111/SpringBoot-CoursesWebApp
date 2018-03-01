@@ -27,3 +27,4 @@ target/
 .classpath
 .project
 .mvn/
+src/main/webapp/upload/

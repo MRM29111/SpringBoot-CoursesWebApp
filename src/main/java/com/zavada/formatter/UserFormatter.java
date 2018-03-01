@@ -20,6 +20,7 @@ public class UserFormatter implements Formatter<User> {
 
 	@Override
 	public String print(User object, Locale locale) {
+		System.out.println(object);
 		return String.valueOf(object.getId());
 	}
 

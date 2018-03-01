@@ -1,9 +1,12 @@
 package com.zavada.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,7 +19,6 @@ import lombok.Setter;
 @Getter @Setter
 public class User extends BaseEntity {
 
-	private static final long serialVersionUID = -3796473817665214908L;
 
 	private String email;
 	private String password;
@@ -30,5 +32,8 @@ public class User extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Course> courses;
 	
 }

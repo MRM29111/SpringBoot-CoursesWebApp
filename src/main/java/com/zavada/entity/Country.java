@@ -14,7 +14,6 @@ import lombok.Setter;
 @Getter @Setter
 public class Country extends BaseEntity {
 
-	private static final long serialVersionUID = 8122761524824408126L;
 
 	private String name;
 	

@@ -25,10 +25,34 @@
 			
 			<div class="col-md-4">
 				<h3>Courses control panel:</h3>
-				<a class="btn btn-success" href="/user/${userId}/course/create">Create course</a>
-				<a class="btn btn-info" href="/user/${userId}/courses">List of my courses</a>
+				<a class="btn btn-success" href="/course/${userId}/create">Create course</a>
+				<%-- <a class="btn btn-info" href="/course/${userId}/courses">List of my courses</a> --%>
 			</div>
-			
 		</div>	
+		
+		<div class="row">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr class="info">
+						<th>ID</th>
+						<th style="width: 300px">IMAGE</th>
+						<th>TITLE</th>
+						<th>PRICE</th>
+						<th>DESCRIPTION</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${userCourses}" var="userCourse">
+						<tr class="danger">
+							<td>${userCourse.id}</td>
+							<td><img src="data:image/png;base64, ${userCourse.courseImage}" width="250px"/></td>
+							<td>${userCourse.title}</td>
+							<td>${userCourse.price}</td>
+							<td>${userCourse.description}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

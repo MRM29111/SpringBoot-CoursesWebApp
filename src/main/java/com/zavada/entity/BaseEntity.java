@@ -1,6 +1,5 @@
 package com.zavada.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,9 +12,7 @@ import lombok.Data;
 
 @MappedSuperclass
 @Data
-public class BaseEntity implements Serializable {
-
-	private static final long serialVersionUID = -5451502770440798675L;
+public class BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

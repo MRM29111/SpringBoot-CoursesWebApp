@@ -4,7 +4,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Edit profile info</div>
 	<div class="panel-body">
-		<form:form action="${pageContext.request.contextPath}/user/${editUserModel.id}/profile/edit" 
+		<form:form action="${pageContext.request.contextPath}/user/${editUserModel.id}/profile/edit" method="POST"
 				modelAttribute="editUserModel" enctype="multipart/form-data">
 			<div class="form-group">
 				<form:errors path="*" cssClass="error" />

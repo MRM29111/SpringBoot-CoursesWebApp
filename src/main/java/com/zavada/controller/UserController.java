@@ -1,6 +1,7 @@
 package com.zavada.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.zavada.domain.EditUserRequest;
+import com.zavada.entity.Course;
 import com.zavada.entity.User;
 import com.zavada.mapper.UserMapper;
 import com.zavada.service.CountryService;
+import com.zavada.service.CourseService;
 import com.zavada.service.UserService;
 import com.zavada.service.utils.FilesUtils;
 
@@ -37,11 +40,13 @@ public class UserController {
 
 	private UserService userservice;
 	private CountryService countryService;
-	
+	private CourseService courseService;
+		
 	@Autowired
-	public UserController(UserService userservice, CountryService countryService) {
+	public UserController(UserService userservice, CountryService countryService, CourseService courseService) {
 		this.userservice = userservice;
 		this.countryService = countryService;
+		this.courseService = courseService;
 	}
 
 	@GetMapping("/{userId}/profile")
@@ -50,10 +55,20 @@ public class UserController {
 		User user = userservice.findUserById(id);
 		user.setPassword(""); // clean password string
 		
-		String image = FilesUtils.getUserImage(user);
+		String image = FilesUtils.getImage("user_" + user.getId(), user.getUserImage());
 		model.addAttribute("userModel", user);
 		model.addAttribute("profileImage", image);
 		
+		List<Course> coursesByTeacher = courseService.findAllCoursesByTeacher(user);
+		
+		for(int i = 0; i < coursesByTeacher.size(); i++) {
+			String courseImage = coursesByTeacher.get(i).getCourseImage();
+			coursesByTeacher.get(i).setCourseImage(FilesUtils.getImage("course_" + coursesByTeacher.get(i).getId(), courseImage));
+		}
+		
+		model.addAttribute("userCourses", coursesByTeacher);
+		
+		model.addAttribute("title", "User Profile");
 		return "user/profile";
 	}
 	
@@ -63,6 +78,8 @@ public class UserController {
 		
 		model.addAttribute("countries", countryService.findAllCountries());
 		model.addAttribute("editUserModel", UserMapper.userToEdit(user));
+		
+		model.addAttribute("title", "Edit profile");
 		return "user/edit";
 	}
 
@@ -78,7 +95,7 @@ public class UserController {
 		User user = UserMapper.editToUser(request);
 		user.setUserImage(file.getOriginalFilename());
 		userservice.saveUser(user);
-		FilesUtils.createUserProfileImage(user, file);
+		FilesUtils.createImage("user_" + user.getId(), file);
 		
 		return "redirect:/user/" + userId + "/profile";
 	}
