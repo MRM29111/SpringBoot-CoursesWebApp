@@ -11,7 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.web.multipart.MultipartFile;
 
-public interface FilesUtils {
+public final class FilesUtils {
 
 	static String PROJECT_PATH = System.getProperty("user.dir");
 	static String SEPARATOR = System.getProperty("file.separator");
@@ -27,12 +27,12 @@ public interface FilesUtils {
 			uploadDir.mkdir();
 		}
 
-		File userFolder = new File(uploadDir.getAbsolutePath() + File.separator + folderName);
-		if (!userFolder.exists()) {
-			userFolder.mkdir();
+		File folder = new File(uploadDir.getAbsolutePath() + File.separator + folderName);
+		if (!folder.exists()) {
+			folder.mkdir();
 		}
 
-		return userFolder;
+		return folder;
 	}
 
 	/* CREATE FOLDER */
@@ -49,15 +49,16 @@ public interface FilesUtils {
 	public static String getImage(String folderName, String image) throws IOException {
 		File file = null;
 		System.out.println("Image: " + image);
+		String defaultPath = ROOT_PATH + SEPARATOR + "default.png";
 		
 		if (image != null && image != "") {
 			file = new File(ROOT_PATH + SEPARATOR + folderName + SEPARATOR + image);
 			
 			if(!file.exists()) {
-				file = new File(ROOT_PATH + SEPARATOR + "default.png");
+				file = new File(defaultPath);
 			}
 		} else {
-			file = new File(ROOT_PATH + SEPARATOR + "default.png");
+			file = new File(defaultPath);
 		}
 		System.out.println(file.getAbsolutePath());
 		

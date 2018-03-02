@@ -4,10 +4,14 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.zavada.entity.enumeration.Role;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,4 +40,6 @@ public class User extends BaseEntity {
 	@OneToMany(mappedBy = "user")
 	private Set<Course> courses;
 	
+	//@Enumerated(EnumType.STRING)
+	//private Role role;
 }
