@@ -47,7 +47,11 @@ public final class FilesUtils {
 	}
 	
 	public static String getImage(String folderName, String image) throws IOException {
+		
 		File file = null;
+		byte[] encodeFileToByte = null;
+		String encodedFile = null;
+		
 		System.out.println("Image: " + image);
 		String defaultPath = ROOT_PATH + SEPARATOR + "default.png";
 		
@@ -61,10 +65,7 @@ public final class FilesUtils {
 			file = new File(defaultPath);
 		}
 		System.out.println(file.getAbsolutePath());
-		
-		byte[] encodeFileToByte = null;
-		String encodedFile = null;
-		
+				
 		encodeFileToByte = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
 		encodedFile = new String(encodeFileToByte);
 		
