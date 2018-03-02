@@ -6,7 +6,7 @@
 			<div class="box">
 				<div class="content-wrap">
 					<h3>Login</h3>
-					<form:form action="${pageContext.request.contextPath}/login" modelAttribute="userModel">
+					<form:form action="/login" modelAttribute="userModel">
 						<div class="form-group">
 							<form:errors path="*" cssClass="error"/>
 						</div>
