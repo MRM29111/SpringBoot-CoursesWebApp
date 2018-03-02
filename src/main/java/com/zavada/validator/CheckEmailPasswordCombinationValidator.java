@@ -21,10 +21,7 @@ public class CheckEmailPasswordCombinationValidator implements ConstraintValidat
 
 	@Override
 	public boolean isValid(LoginRequest request, ConstraintValidatorContext context) {
-		
-		return userService.findUserByEmailAndPassword(request.getEmail(), request.getPassword()) == null ? false : true;
+		//userService.findUserByEmailAndPassword(request.getEmail(), request.getPassword()) == null ? false : true;
+		return false; 
 	}
-
-	
-	
 }

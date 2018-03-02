@@ -6,7 +6,7 @@
 			<div class="box">
 				<div class="content-wrap">
 					<h3>Login</h3>
-					<form:form action="/login" modelAttribute="userModel">
+					<form:form action="/login" modelAttribute="userModel" method="POST">
 						<div class="form-group">
 							<form:errors path="*" cssClass="error"/>
 						</div>
@@ -17,6 +17,13 @@
 							<label class="control-label" for="focusedInput">Password</label>
 							<form:password path="password" cssClass="form-control" title="Password" />
 						</div>
+						<!-- <div class="form-group">
+							<div class="col-sm-10">
+								<div class="checkbox">
+									<label><input type="checkbox" name="rememberMe"/> Remember me</label>
+								</div>
+							</div>
+						</div> -->
 						<div class="form-group">
 							<span class="input-group-btn">
 								<input type="submit" class="btn btn-primary">

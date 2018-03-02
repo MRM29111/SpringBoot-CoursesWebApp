@@ -19,7 +19,7 @@ public interface UserMapper {
 		User user = new User();
 		user.setEmail(request.getEmail());
 		user.setPassword(request.getPassword());
-		
+		user.setRole(request.getRole());
 		return user;
 	}
 	
@@ -28,10 +28,12 @@ public interface UserMapper {
 		user.setId(request.getId());
 		user.setFullName(request.getFullName());
 		user.setAge(request.getAge());
-		user.setUserImage(request.getUserImagePath());
 		user.setCountry(request.getCountry());
 		user.setEmail(request.getEmail());
 		user.setPassword(request.getPassword());
+		user.setUserImage(request.getProfileImage().getOriginalFilename());
+		user.setRole(request.getRole());
+		user.setEdited(true);
 		return user;
 	}
 	
@@ -43,6 +45,7 @@ public interface UserMapper {
 		request.setAge(user.getAge());
 		request.setCountry(user.getCountry());
 		request.setPassword(user.getPassword());
+		request.setRole(user.getRole());
 		return request;
 	}
 }

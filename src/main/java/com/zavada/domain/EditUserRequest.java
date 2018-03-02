@@ -4,7 +4,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.zavada.entity.Country;
+import com.zavada.entity.enumeration.Role;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +28,8 @@ public class EditUserRequest {
 	@Max(value = 65)
 	private int age;
 	
-	private String userImagePath;
+	private MultipartFile profileImage;
 	private Country country;
+	private Role role;
+	// private String userImagePath;
 }

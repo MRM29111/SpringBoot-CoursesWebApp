@@ -1,9 +1,11 @@
 package com.zavada.domain;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.zavada.entity.enumeration.Role;
 import com.zavada.validator.CheckIfEmailExists;
 import com.zavada.validator.CheckPasswordsMatch;
 
@@ -21,5 +23,5 @@ public class RegisterRequest {
 	@NotEmpty private String email;
 	@NotEmpty private String password;
 	@NotEmpty private String passwordConfirm;
-	
+	@NotNull private Role role;
 }

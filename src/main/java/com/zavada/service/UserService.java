@@ -10,5 +10,6 @@ public interface UserService {
 
 	User findUserById(int id);
 	
-	User findUserByEmailAndPassword(String email, String password);
+	void editUser(User user);
+	// User findUserByEmailAndPassword(String email, String password);
 }

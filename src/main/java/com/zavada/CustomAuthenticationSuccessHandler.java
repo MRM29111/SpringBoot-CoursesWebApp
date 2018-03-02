@@ -59,7 +59,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 			}
 		}
 
-		if (isAdmin) {
+/*		if (isAdmin) {
 			return "/admin";
 		} else if (isTeacher) {
 			return "/teacher";
@@ -68,7 +68,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		} else {
 			throw new IllegalStateException();
 		}
-
+*/
+		return "/user";
 	}
 
 	protected void clearAuthenticationAttributes(HttpServletRequest request) {

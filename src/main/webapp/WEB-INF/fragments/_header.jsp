@@ -32,24 +32,21 @@
         </li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" style="width: 300px;">
 			<sec:authorize access="!isAuthenticated()">
-				<li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Action <span class="caret"></span></a>
-		          <ul class="dropdown-menu" role="menu">
 		            <li><a href="/login">Login</a></li>
 		            <li class="divider"></li>
-		            <li><a href="/register">Register</a></li>
-		          </ul>
-		        </li>		
+		            <li><a href="/register">Register</a></li>		
 		     </sec:authorize>
+		     
 		     <sec:authorize access="isAuthenticated()">
-				<li><a href="/user/profile">User profile</a></li>
-				
-				<c:url var="logoutUrl" value="/logout" />
-				<form:form action="${logoutUrl}" method="post">
-					<li><input class="btn btn-danger" type="submit" value="Logout" /></li>
-				</form:form>
+		     		<sec:authentication property="principal.username" var="username"/>
+	     			<li><a href="/user">${username}</a></li>
+
+					<c:url var="logoutUrl" value="/logout" />
+					<form:form action="${logoutUrl}" method="post" cssStyle="padding-top: 7px;">
+						<li><input class="btn btn-danger" type="submit" value="Logout" /></li>
+					</form:form>
 			</sec:authorize>
       </ul>
     </div>

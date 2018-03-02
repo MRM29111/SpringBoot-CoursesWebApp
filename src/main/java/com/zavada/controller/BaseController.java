@@ -9,18 +9,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.zavada.domain.LoginRequest;
 import com.zavada.domain.RegisterRequest;
 import com.zavada.entity.User;
+import com.zavada.entity.enumeration.Role;
 import com.zavada.mapper.UserMapper;
 import com.zavada.service.UserService;
 import com.zavada.service.utils.FilesUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
 @Slf4j
+@Controller
+@SessionAttributes("userRole")
 public class BaseController {
 
 	@Autowired private UserService userService;
@@ -33,7 +36,10 @@ public class BaseController {
 		
 	@GetMapping("/register")
 	public String showRegister(Model model) {
-		log.debug("Show REGISTER page");
+		// EnumMap<Role, String> map = new EnumMap<>(Role.class);
+		// map.remove(Role.ROLE_ADMIN);
+		
+		model.addAttribute("userRole", Role.values());
 		model.addAttribute("userModel", new RegisterRequest());
 		
 		return "register";

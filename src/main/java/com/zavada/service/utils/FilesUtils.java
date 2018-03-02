@@ -13,6 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 public final class FilesUtils {
 
+	/*
+	 	IMPORTANT THING WHEN UPLOAD FILE AND USE SPRING SECURITY
+	 	NEED TO ADD TO FORM URL THIS PARAM:
+	 	?${_csrf.parameterName}=${_csrf.token}
+	 */
+	
 	static String PROJECT_PATH = System.getProperty("user.dir");
 	static String SEPARATOR = System.getProperty("file.separator");
 	static String USER_FOLDER = "user_";
@@ -71,5 +77,4 @@ public final class FilesUtils {
 		
 		return encodedFile;
 	}
-
 }

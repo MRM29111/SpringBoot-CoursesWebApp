@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -38,14 +37,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		argumentResolvers.add(resolver);
 		super.addArgumentResolvers(argumentResolvers);
 	}
-
-	@Bean(name = "multipartResolver")
-	public CommonsMultipartResolver multipartResolver() {
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-		multipartResolver.setMaxUploadSize(MAX_UPLOAD_SIZE * 2);
-		multipartResolver.setMaxUploadSizePerFile(MAX_UPLOAD_SIZE);
-		return multipartResolver;
-	}
 	
 	@Bean
 	public EmbeddedServletContainerCustomizer customizer() {
@@ -56,11 +47,17 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	        }
 	    };
 	}
-
+	
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(new UserFormatter());
 	}
 	
-	
+	/*	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		multipartResolver.setMaxUploadSize(MAX_UPLOAD_SIZE * 2);
+		multipartResolver.setMaxUploadSizePerFile(MAX_UPLOAD_SIZE);
+		return multipartResolver;
+	}*/
 }

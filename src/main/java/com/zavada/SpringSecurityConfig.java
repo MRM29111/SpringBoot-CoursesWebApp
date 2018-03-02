@@ -45,14 +45,23 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.invalidateHttpSession(true)
 		.and()
 			.authorizeRequests()
-			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/teacher/**").hasRole("TEACHER")
-			.antMatchers("/student/**").hasRole("STUDENT")
+			.antMatchers("/user").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+			.antMatchers("/user/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+			//.antMatchers("/admin/**").hasRole("ADMIN")
+			//.antMatchers("/teacher/**").hasRole("TEACHER")
+			//.antMatchers("/student/**").hasRole("STUDENT")
 			.anyRequest().permitAll()
 		.and()
 			.exceptionHandling().accessDeniedPage("/")
 		.and()
 			.sessionManagement().maximumSessions(1);
+		/*.and().and()
+			.rememberMe()
+			.rememberMeParameter("rememberMe")
+			.key("My_super_sercet_key")
+			.rememberMeCookieName("Super_secret_cookie");*/
 	}
 	
+	
+
 }
