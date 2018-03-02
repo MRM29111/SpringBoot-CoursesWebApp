@@ -1,7 +1,5 @@
 package com.zavada.controller;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +47,7 @@ public class BaseController {
 			return "register";
 		}
 		
-		User user = UserMapper.toUser(request);
+		User user = UserMapper.registerToUser(request);
 		userService.saveUser(user);
 
 		FilesUtils.createFolder("user_" + user.getId());
@@ -58,24 +56,23 @@ public class BaseController {
 	
 	@GetMapping("/login")
 	public String showLogin(Model model) {
-		log.debug("Show LOGIN page");
 		model.addAttribute("userModel", new LoginRequest());
 		return "login";
 	}
 	
-	@PostMapping("/login")
-	public String login(@Valid @ModelAttribute("userModel") LoginRequest request, BindingResult result, HttpServletResponse response) {
-		log.debug("Login : " + request.getEmail());
-		if(result.hasErrors()) {
-			return "login";
-		}
-		User user = userService.findUserByEmail(request.getEmail());
-		
-		Cookie cookie = new Cookie("user_id", user.getId()+"");
-		cookie.setMaxAge(24 * 60 * 60);
-		cookie.setPath("/");
-		response.addCookie(cookie);
-		return "redirect:/user/" + user.getId() + "/profile";
-	}
+//	@PostMapping("/login")
+//	public String login(@Valid @ModelAttribute("userModel") LoginRequest request, BindingResult result, HttpServletResponse response) {
+//		log.debug("Login : " + request.getEmail());
+//		if(result.hasErrors()) {
+//			return "login";
+//		}
+//		User user = userService.findUserByEmail(request.getEmail());
+//		
+//		Cookie cookie = new Cookie("user_id", user.getId()+"");
+//		cookie.setMaxAge(24 * 60 * 60);
+//		cookie.setPath("/");
+//		response.addCookie(cookie);
+//		return "redirect:/user/" + user.getId() + "/profile";
+//	}
 		
 }
