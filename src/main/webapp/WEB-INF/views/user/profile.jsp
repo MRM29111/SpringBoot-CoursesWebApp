@@ -46,7 +46,7 @@
 						<th style="width: 300px">IMAGE</th>
 						<th>TITLE</th>
 						<th>PRICE</th>
-						<th>DESCRIPTION</th>
+						<th style="width: 350px">DESCRIPTION</th>
 						<th>CATEGORY</th>
 						<th>CONTROL</th>
 					</tr>
