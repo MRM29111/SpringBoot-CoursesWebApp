@@ -102,16 +102,16 @@ public class UserController {
 	
 	
 	
-	@GetMapping("/logout")
-	public String userLogout(Model model, HttpServletRequest request, HttpServletResponse response) {
-		// @CookieValue("user_id") String cookie
-				
-		Cookie cookie = new Cookie("user_id", null);
-		cookie.setValue(null);
-		cookie.setPath("/");
-		cookie.setMaxAge(0);
-		response.addCookie(cookie);	
-		return "redirect:/login";
-	}
+//	@GetMapping("/logout")
+//	public String userLogout(Model model, HttpServletRequest request, HttpServletResponse response) {
+//		// @CookieValue("user_id") String cookie
+//				
+//		Cookie cookie = new Cookie("user_id", null);
+//		cookie.setValue(null);
+//		cookie.setPath("/");
+//		cookie.setMaxAge(0);
+//		response.addCookie(cookie);	
+//		return "redirect:/login";
+//	}
 	
 }
