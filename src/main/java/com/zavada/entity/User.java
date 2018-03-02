@@ -2,11 +2,14 @@ package com.zavada.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -40,6 +43,6 @@ public class User extends BaseEntity {
 	@OneToMany(mappedBy = "user")
 	private Set<Course> courses;
 	
-	//@Enumerated(EnumType.STRING)
-	//private Role role;
+	@Enumerated(EnumType.ORDINAL)
+	private Role role;
 }

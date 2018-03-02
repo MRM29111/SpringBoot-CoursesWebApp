@@ -2,7 +2,7 @@ package com.zavada.entity.enumeration;
 
 public enum Role {
 
-	ROLE_TEACHER("TEACHER"), ROLE_STUDENT("STUDENT");
+	ROLE_ADMIN("ADMIN"), ROLE_TEACHER("TEACHER"), ROLE_STUDENT("STUDENT");
 
 	private String role;
 
