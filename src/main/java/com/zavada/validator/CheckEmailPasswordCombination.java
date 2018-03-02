@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = CheckEmailPasswordCombinationValidator.class)
 public @interface CheckEmailPasswordCombination {
 
-	String message() default "Entered compination of email and passowrd are not correct. Please try again";
+	String message() default "Entered combination of email and passowrd are not correct. Please try again";
 	Class<?>[] groups() default{};
 	Class<? extends Payload>[] payload() default {};
 	
