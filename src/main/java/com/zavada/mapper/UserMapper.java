@@ -1,12 +1,21 @@
 package com.zavada.mapper;
 
+import org.springframework.security.core.authority.AuthorityUtils;
+
 import com.zavada.domain.EditUserRequest;
 import com.zavada.domain.RegisterRequest;
 import com.zavada.entity.User;
 
 public interface UserMapper {
 
-	public static User toUser(RegisterRequest request) {
+	// Ohhhh.. need to change User entity class name
+	public static org.springframework.security.core.userdetails.User toUser(User user) {
+		return 
+				new org.springframework.security.core.userdetails.User(
+						user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList(String.valueOf(user.getRole())));
+	}
+	
+	public static User registerToUser(RegisterRequest request) {
 		User user = new User();
 		user.setEmail(request.getEmail());
 		user.setPassword(request.getPassword());
